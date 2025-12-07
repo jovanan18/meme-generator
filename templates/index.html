@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <title>Meme Generator</title>
+</head>
+<body>
+    <h1>Meme Generator (teče v Dockerju)</h1>
+
+    <!-- Obrazec za nalaganje slike in vnos teksta -->
+    <form method="POST" enctype="multipart/form-data">
+        <div>
+            <label>Slika:</label>
+            <input type="file" name="image" required>
+        </div>
+
+        <div>
+            <label>Zgornji tekst:</label>
+            <input type="text" name="top_text">
+        </div>
+
+        <div>
+            <label>Spodnji tekst:</label>
+            <input type="text" name="bottom_text">
+        </div>
+
+        <button type="submit">Generiraj meme</button>
+    </form>
+
+    <!-- Prikaz generiranega mema, če obstaja -->
+    {% if meme_filename %}
+        <h2>Rezultat:</h2>
+        <img src="{{ url_for('static', filename=meme_filename) }}" alt="Generated meme" style="max-width: 500px;">
+    {% endif %}
+</body>
+</html>
